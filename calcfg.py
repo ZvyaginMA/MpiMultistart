@@ -9,13 +9,13 @@ def calcfg1(x):
 
 def calcfg2(x):
     """
-        f(x) = x^2 * cos(4x) + 1.7x^2
-        g(x) = 2x * cos(4x) - 4 *x^2 * sin(4x) + 3.4x
+        f(x) = x^2 * cos(14x) + 1.7x^2
+        g(x) = 2x * cos(14x) - 14 *x^2 * sin(14x) + 3.4x
     """
     if (len(x) > 1):
         raise Exception(f"x must have len = 1 but have {len(x)}")
     f = x*x * np.cos(4 * x) + 1.7 * x * x
-    g = 2 * x * np.cos(4 * x) - 4 *x * x * np.sin(4 * x) + 3.4 * x
+    g = 2 * x * np.cos(14 * x) - 14 *x * x * np.sin(14 * x) + 3.4 * x
     return f, g
 
 
