@@ -34,7 +34,7 @@ class TestRalgb(unittest.TestCase):
 
 class TestSeqMultistart(unittest.TestCase):
     def test1(self):
-        number_of_start = 100
+        number_of_start = 1000
         dim = 1
         lb = np.array([-50.0])
         ub = np.array([50.0])
