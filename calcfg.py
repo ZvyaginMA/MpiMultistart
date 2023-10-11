@@ -1,6 +1,6 @@
 import numpy as np
 
-def calcfg(x):
+def calcfg1(x):
     """
         f(x) = x @ x
         g(x) = 2 * x
@@ -9,12 +9,14 @@ def calcfg(x):
 
 def calcfg2(x):
     """
-        f(x) = x @ x
-        g(x) = 2 * x
+        f(x) = x^2 * cos(4x) + 1.7x^2
+        g(x) = 2x * cos(4x) - 4 *x^2 * sin(4x) + 3.4x
     """
-    A = 10
-    n = len(x)
-    return A * n + (x * x - A * np.cos(x)).sum()
+    if (len(x) > 1):
+        raise Exception(f"x must have len = 1 but have {len(x)}")
+    f = x*x * np.cos(4 * x) + 1.7 * x * x
+    g = 2 * x * np.cos(4 * x) - 4 *x * x * np.sin(4 * x) + 3.4 * x
+    return f, g
 
 
 def calcfgTol(x):
