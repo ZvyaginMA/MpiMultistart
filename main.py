@@ -27,11 +27,13 @@ def main():
     index_min = np.argmin(resultF_part)
     x_min = resultX_part[index_min]
     f_min = resultF_part[index_min]
+    status = MPI.Status()
     if(rank == 0):
         results = np.ones((numprocs, dim))
         results[0] = x_min[:]
         for k in range(1, numprocs):
-            comm.Recv([results[k], dim, MPI.DOUBLE], source=k, tag=0, status=None)
+            comm.Probe(source=MPI.ANY_SOURCE , tag=MPI.ANY_TAG , status=status)
+            comm.Recv([results[status.Get_source()], dim, MPI.DOUBLE], source=status.Get_source(), tag=0, status=None)
     else:
         comm.Send([x_min, dim, MPI.DOUBLE], dest=0, tag=0)
 
