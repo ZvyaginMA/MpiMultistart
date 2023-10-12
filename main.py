@@ -31,8 +31,7 @@ def main():
         results = np.ones((numprocs, dim))
         results[0] = x_min[:]
         for k in range(1, numprocs):
-            comm.Recv([x_min, dim, MPI.DOUBLE], source=k, tag=0, status=None)
-            results[k] = x_min[:]
+            comm.Recv([results[k], dim, MPI.DOUBLE], source=k, tag=0, status=None)
     else:
         comm.Send([x_min, dim, MPI.DOUBLE], dest=0, tag=0)
 
