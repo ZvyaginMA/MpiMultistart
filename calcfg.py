@@ -19,7 +19,17 @@ def calcfg2(x):
     return f, g
 
 
-def calcfgTol(x):
-    a, b = x[:len(x) // 2], x[len(x) // 2:]
-    return - self.tol.tol_value(a, b), np.concatenate(
-    [- self.tol.dTda(a, b), - self.tol.dTdb(a, b)])
+def calcfg3(x):
+    """
+        f(x) = 20 + x^2 - 10*cos(2pi x) + y^2 - 10*cos(2pi y)
+        g(x) = (2x + 20pi sin(2pix),  2y + 20pi sin(2pi y))
+
+        экстремум (x, y) = (0, 0)
+        https://ru.wikipedia.org/wiki/%D0%A4%D1%83%D0%BD%D0%BA%D1%86%D0%B8%D1%8F_%D0%A0%D0%B0%D1%81%D1%82%D1%80%D0%B8%D0%B3%D0%B8%D0%BD%D0%B0
+    """
+    if (len(x) != 2):
+        raise Exception(f"x must have len = 2, but have {len(x)}")
+    f = 20 + sum(x * x) - 10 * sum(np.cos(2 * np.pi * x)) 
+    g = 2 * x + 20 * np.pi * np.sin(2 * np.pi * x) 
+    return f, g
+
