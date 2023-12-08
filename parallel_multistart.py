@@ -33,7 +33,7 @@ def parallel_multistart(calc_fg, method_optimization, multistart_options : Multi
     status = MPI.Status()
     if(rank == 0):
         results = np.ones((numprocs, dim + 1))
-        results[0] = res_part[:-1]
+        results[0][:-1] = res_part[:-1]
         results[0][-1] = res_part[-1]
         for k in range(1, numprocs):
             comm.Probe(source=MPI.ANY_SOURCE , tag=MPI.ANY_TAG , status=status) #ловим первый попавшийся send и из 
