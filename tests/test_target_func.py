@@ -19,9 +19,13 @@ class TestCalcfg(unittest.TestCase):
         f, g = calcfg.calcfg2(input_data2)
         self.assertTrue(np.abs(4.819 -f).sum() < 1E-2)
 
-
     def test_calcfg3(self):
         input_data1 = np.array([0.0, 1.0])
         f, g = calcfg.calcfg3(input_data1)
         self.assertTrue(np.abs(f - 1) < 1E-2)
         self.assertTrue(np.abs(np.array([0.0, 2.0]) - g).sum() < 1E-2)
+
+        input_data2 = np.array([0.0, 0.0, 0.0])
+        f, g = calcfg.calcfg3(input_data2)
+        self.assertTrue(np.abs(f - 0) < 1E-2)
+        self.assertTrue(np.abs(np.array([0.0, 0.0, 0.0]) - g).sum() < 1E-2)

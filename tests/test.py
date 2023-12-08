@@ -26,3 +26,49 @@ class TestSeqMultistart(unittest.TestCase):
         self.assertTrue(np.abs(x_min).sum() < 1E-5)
         self.assertTrue(np.abs(f_min).sum() < 1E-5)
         #Нашли глобальный минимум
+
+    def test2(self):
+        number_of_start = 1000
+        dim = 2
+        lb = np.ones(dim) * -5.0
+        ub = np.ones(dim) * 5.0
+        X = np.zeros((number_of_start, dim), dtype=np.float64)
+        for i in range(number_of_start):
+            X[i] = np.random.uniform(lb, ub)
+
+        resultX = np.zeros((number_of_start, dim))
+        resultF = np.zeros((number_of_start))
+        for i in range(len(X)):
+            xr, fr, nit, ncalls, ccode= ralgb5(calcfg.calcfg3, X[i])
+            resultX[i] = xr
+            resultF[i] = fr
+
+        index_min = np.argmin(resultF)
+        x_min = resultX[index_min]
+        f_min = resultF[index_min]
+        self.assertTrue(np.abs(x_min).sum() < 1E-5)
+        self.assertTrue(np.abs(f_min) < 1E-5)
+        #Нашли глобальный минимум
+
+    def test3(self):
+        number_of_start = 2000
+        dim = 3
+        lb = np.ones(dim) * -3.0
+        ub = np.ones(dim) * 3.0
+        X = np.zeros((number_of_start, dim), dtype=np.float64)
+        for i in range(number_of_start):
+            X[i] = np.random.uniform(lb, ub)
+
+        resultX = np.zeros((number_of_start, dim))
+        resultF = np.zeros((number_of_start))
+        for i in range(len(X)):
+            xr, fr, nit, ncalls, ccode= ralgb5(calcfg.calcfg3, X[i])
+            resultX[i] = xr
+            resultF[i] = fr
+
+        index_min = np.argmin(resultF)
+        x_min = resultX[index_min]
+        f_min = resultF[index_min]
+        self.assertTrue(np.abs(x_min).sum() < 1E-5)
+        self.assertTrue(np.abs(f_min) < 1E-5)
+        #Нашли глобальный минимум
