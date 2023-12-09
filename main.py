@@ -14,12 +14,12 @@ def calc_calcfg2():
 
 def calc_calcfg3():
     m_opt = MultistartOptions()
-    m_opt.dim = 5
-    m_opt.u_boundary = np.ones(m_opt.dim) * 2.0
-    m_opt.l_boundary = np.ones(m_opt.dim) * -2.0
+    m_opt.dim = 4
+    m_opt.u_boundary = np.ones(m_opt.dim) * 5.0
+    m_opt.l_boundary = np.ones(m_opt.dim) * -5.0
     m_opt.number_of_start = 10000
     parallel_multistart(calcfg3, ralgb5, m_opt)
 
 if __name__ == "__main__":
-    calc_calcfg3()
+    calc_calcfg2()
 
